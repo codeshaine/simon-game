@@ -106,3 +106,60 @@ what exactky are you doing
 
 rename i as size
  now new i will iterate back to zero everytime the i reaches the size
+
+
+
+ 
+
+$(document).on("keydown",function(){
+presscollection=[];
+size=0,i=0;
+randomnum=randomNum();
+      switchCall(randomnum);
+presscollection.push(randomnum);
+console.log(presscollection);
+process();
+
+})
+
+
+
+
+function process(){
+  $(".btn").on("click",function()
+  {
+let index= $(".btn").index(this);
+
+if(index===presscollection[i]){
+switchCall(index);
+if(i===size){
+ randomnum=randomNum();
+presscollection.push(randomnum);
+setTimeout(() => {
+   switchCall(randomnum);
+}, 400);
+i=0;
+size++;
+ console.log(randomnum);
+}
+i++;
+
+}
+    else
+    {
+playsound("wrong")
+$("body").addClass("game-over")
+setTimeout(function(){
+    $("body").removeClass("game-over")
+},100)
+
+return;
+
+    }
+
+
+
+  });
+}
+
+

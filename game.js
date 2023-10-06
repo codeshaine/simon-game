@@ -1,5 +1,7 @@
 let presscollection=[];
 let level=0;
+let randomnum;
+let size=0,i=0;
 
 // for playing audio
 function playsound(song){
@@ -51,10 +53,11 @@ switch(choice){
 
 $(document).on("keydown",function(){
 presscollection=[];
-      randomnum=randomNum();
+size=0,i=0;
+randomnum=randomNum();
       switchCall(randomnum);
 presscollection.push(randomnum);
-console.log("start "+randomnum);
+console.log(presscollection);
 process();
 
 })
@@ -63,12 +66,10 @@ process();
 
 
 function process(){
-let size=0,i=0;
-
-
   $(".btn").on("click",function()
   {
 let index= $(".btn").index(this);
+
 if(index===presscollection[i]){
 switchCall(index);
 if(i===size){
@@ -81,7 +82,7 @@ i=0;
 size++;
  console.log(randomnum);
 }
-
+i++;
 
 }
     else
@@ -92,10 +93,11 @@ setTimeout(function(){
     $("body").removeClass("game-over")
 },100)
 
-    return;
+return;
+
     }
 
-i++;
+
 
   });
 }
