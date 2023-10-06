@@ -92,3 +92,17 @@ i++;
 console.log(presscollection.length);
   });
 }
+
+
+
+
+
+now what i need to do is every time i have to reset the ined to zero 
+
+do i have to take another index
+doesnt that will make the code complex i dont know
+
+what exactky are you doing
+
+rename i as size
+ now new i will iterate back to zero everytime the i reaches the size
