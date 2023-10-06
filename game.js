@@ -50,7 +50,7 @@ switch(choice){
 
 
 $(document).on("keydown",function(){
-    presscollection=[];
+presscollection=[];
       randomnum=randomNum();
       switchCall(randomnum);
 presscollection.push(randomnum);
@@ -59,23 +59,29 @@ process();
 
 })
 
+
+
+
 function process(){
-let i=0;
+let size=0,i=0;
+
 
   $(".btn").on("click",function()
   {
 let index= $(".btn").index(this);
 if(index===presscollection[i]){
 switchCall(index);
+if(i===size){
  randomnum=randomNum();
-
-
 presscollection.push(randomnum);
 setTimeout(() => {
    switchCall(randomnum);
 }, 400);
- 
+i=0;
+size++;
  console.log(randomnum);
+}
+
 
 }
     else
@@ -85,16 +91,13 @@ $("body").addClass("game-over")
 setTimeout(function(){
     $("body").removeClass("game-over")
 },100)
-i=0;
+
     return;
     }
-    if(i<presscollection.length)
+
 i++;
-else
-return;
 
   });
 }
 
 
-//im in git experimebt branch  not succeded
