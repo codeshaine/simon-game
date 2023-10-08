@@ -1,5 +1,6 @@
 let presscollection=[];
 let randomnum;
+let listner=true;
 
 
 // for playing audio
@@ -48,13 +49,14 @@ switch(choice){
 
 
 
-let listner=true;
+
 $(document).on("keydown",function(){
     if(listner){
-presscollection=[];
 randomnum=randomNum();
 presscollection.push(randomnum);
 switchCall(randomnum);
+console.log(presscollection);
+$(".btn").on("click");
 process();
     }
 });
@@ -63,32 +65,39 @@ process();
 
 
 function process(){
-    let i=0;size=presscollection.length;
+    let i=0,size=presscollection.length;
     if(listner)
 listner=false;
   $(".btn").on("click",function()
   {
 let index= $(".btn").index(this);
 if(index===presscollection[i]){
+size=presscollection.length;
     i++;
+    console.log("i="+i+" size="+size);
 switchCall(index);
 if(i===size){
  randomnum=randomNum();
 presscollection.push(randomnum);
+ console.log(presscollection);
 setTimeout(() => {
    switchCall(randomnum);
-}, 400);
+}, 600);
 i=0;
-size++;
 }
 }
     else
     {
-       listner=true;
+
+         presscollection.length=0;
+        size=presscollection.length
+          console.log("i="+i+" size="+size);
 playsound("wrong");
 $("body").addClass("game-over");
 setTimeout(function(){
     $("body").removeClass("game-over")
+      listner=true;
+      $(".btn").off("click");
 },100);
 }
 });
