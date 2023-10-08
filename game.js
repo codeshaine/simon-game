@@ -1,6 +1,9 @@
+//? this is the main branch (codeshaine logic)
+
 let presscollection=[];
 let randomnum;
 let listner=true;
+let levelcount=0;
 
 
 // for playing audio
@@ -47,15 +50,14 @@ switch(choice){
 
 
 
-
-
-
+//main work
 $(document).on("keydown",function(){
     if(listner){
 randomnum=randomNum();
 presscollection.push(randomnum);
-switchCall(randomnum);
-console.log(presscollection);
+switchCall(randomnum); 
+levelcount++;
+$("#level-title").text("Level "+levelcount);
 $(".btn").on("click");
 process();
     }
@@ -74,24 +76,24 @@ let index= $(".btn").index(this);
 if(index===presscollection[i]){
 size=presscollection.length;
     i++;
-    console.log("i="+i+" size="+size);
 switchCall(index);
 if(i===size){
+    levelcount++;
  randomnum=randomNum();
 presscollection.push(randomnum);
- console.log(presscollection);
 setTimeout(() => {
    switchCall(randomnum);
+    $("#level-title").text("Level "+levelcount);
 }, 600);
 i=0;
 }
 }
     else
     {
-
-         presscollection.length=0;
-        size=presscollection.length
-          console.log("i="+i+" size="+size);
+        presscollection.length=0;
+        size=presscollection.length;
+        levelcount=0;
+$("#level-title").text("Game Over, Press Any Key to Restart");
 playsound("wrong");
 $("body").addClass("game-over");
 setTimeout(function(){
