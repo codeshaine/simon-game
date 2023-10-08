@@ -1,6 +1,11 @@
+//? this is the second version of code (this works as same as course projects)
+
+
 let presscollection=[];
 let randomnum;
 let listner=true;
+ let i=0,size;
+ let levelcount=0;
 
 
 // for playing audio
@@ -52,55 +57,57 @@ switch(choice){
 
 $(document).on("keydown",function(){
     if(listner){
+    presscollection.length=0;
 randomnum=randomNum();
 presscollection.push(randomnum);
 switchCall(randomnum);
-console.log(presscollection);
-$(".btn").on("click");
-process();
+levelcount++;
+  $("#level-title").text("Level "+levelcount);
     }
 });
 
 
-
-
-function process(){
-    let i=0,size=presscollection.length;
-    if(listner)
-listner=false;
   $(".btn").on("click",function()
   {
+    if(listner)
+    listner=false;
 let index= $(".btn").index(this);
 if(index===presscollection[i]){
 size=presscollection.length;
     i++;
-    console.log("i="+i+" size="+size);
+
 switchCall(index);
 if(i===size){
+    levelcount++;
+        if(listner)
+listner=false;
  randomnum=randomNum();
 presscollection.push(randomnum);
- console.log(presscollection);
 setTimeout(() => {
    switchCall(randomnum);
+    $("#level-title").text("Level "+levelcount);
 }, 600);
 i=0;
+
 }
 }
     else
     {
 
-         presscollection.length=0;
-        size=presscollection.length
-          console.log("i="+i+" size="+size);
+        presscollection.length=0;
+        size=presscollection.length;
+        levelcount=0;
+        i=0;
 playsound("wrong");
+$("#level-title").text("Game Over, Press Any Key to Restart");
 $("body").addClass("game-over");
 setTimeout(function(){
     $("body").removeClass("game-over")
-      listner=true;
-      $(".btn").off("click");
+    if(!listner)
+    listner=true;
 },100);
 }
 });
-}
+
 
 
