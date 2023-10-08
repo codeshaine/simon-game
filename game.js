@@ -48,22 +48,24 @@ switch(choice){
 
 
 
-
-
+let listner=true;
 $(document).on("keydown",function(){
+    if(listner){
 presscollection=[];
 randomnum=randomNum();
 presscollection.push(randomnum);
 switchCall(randomnum);
 process();
-
-})
+    }
+});
 
 
 
 
 function process(){
     let i=0;size=presscollection.length;
+    if(listner)
+listner=false;
   $(".btn").on("click",function()
   {
 let index= $(".btn").index(this);
@@ -82,12 +84,12 @@ size++;
 }
     else
     {
-playsound("wrong")
-$("body").addClass("game-over")
+       listner=true;
+playsound("wrong");
+$("body").addClass("game-over");
 setTimeout(function(){
     $("body").removeClass("game-over")
-},100)
-return;
+},100);
 }
 });
 }
